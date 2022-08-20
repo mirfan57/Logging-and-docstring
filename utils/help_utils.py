@@ -6,6 +6,15 @@ import logging
 
 
 def prepare_data(df, target_col="y"):
+    """It returns label and independent features.
+
+    Args:
+        df(pd.DataFrame): This is a dataframe
+        target_col (str, optional) : label column name. Defaults to "y".
+
+    Returns:
+        tuple: feature column(X) and label(y)
+    """
     X = df.drop(target_col, axis=1)
     logging.info("Preparing data for training.")
 
@@ -15,7 +24,28 @@ def prepare_data(df, target_col="y"):
 
 
 def save_plot(df, model, filename="plot.png", plot_dir="plots"):
-    def _create_base_plot(df):  # creating a scatter plot of data given to dataframe
+
+    """To make scatter plots and decision boundaries.
+
+     Args:
+         df(pd.DataFrame): This is a Dataframe.
+         model(object): Instance of Perceptron class.
+         filename(str, optional): File to save the plot. Default is "plot.png".
+         plot_dir(str, optional): Directory to save the plot files. Default is "plots".
+
+     Returns:
+         Object of the class.
+    """
+
+    def _create_base_plot(df):
+        """Creates a scatter plot.
+
+        Args:
+            df(pd.DataFrame): This is input dataframe.
+
+        Returns:
+            Scatter plot.
+        """
         logging.info("Creating the base plot.")
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="coolwarm")
         plt.axhline(y=0, color="black", linestyle="--", linewidth=1)  # building x-axis or horizontal line
@@ -25,6 +55,17 @@ def save_plot(df, model, filename="plot.png", plot_dir="plots"):
         figure.set_size_inches(10, 8)
 
     def _plot_decision_regions(X, y, classifier, resolution=0.02):
+        """Creates a scatter plot.
+
+        Args:
+            X(np.array): This is feature columns.
+            y(np.array): This is label column.
+            classifier(object): Model which is an object of Perceptron class.
+            resolution(float): Region in which graph is confined.
+
+        Returns:
+            Plots the decision regions seperating the two classes.
+        """
         logging.info("Plotting the decision regions.")
         colors = ("cyan", "lightgreen")
         cmap = ListedColormap(colors)
