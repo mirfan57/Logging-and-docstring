@@ -1,0 +1,1 @@
+Modular coding of perceptron for OR, AND gates
