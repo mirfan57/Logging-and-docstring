@@ -1,1 +1,1 @@
-Modular coding of perceptron for OR, AND, XOR, NAND, XNOR gates
+Implementation of logging and docstrings
